@@ -1,0 +1,32 @@
+<div class="login_bg">
+	<div class="login_wrap">
+		<div class="login">
+			<div class="login_title">
+				登录
+			</div>
+			<div class="text">
+			<form method="post">	
+				<input name="username" type="text" placeholder="用户名" class="username" required>
+				<input name="password" type="password" placeholder="密码" class="username" required>
+				<input name="verify" type="text" placeholder="验证码" class="username" required>
+				<div class="verify">
+				<img src="{:U('User/getVerify')}" id="verify_img"  title="点击刷新验证码"/>
+				</div>
+				<div class="btn_warp">
+                    <input class="signbtn" type="submit" value="登 录">
+                </div>
+            </form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+//验证码点击刷新
+$(function(){
+	var img = $("#verify_img");
+	var src = img.attr("src")+"?";
+	img.click(function(){
+		img.attr("src",src+Math.random());
+	});
+});
+</script>

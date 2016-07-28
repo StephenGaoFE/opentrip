@@ -1,0 +1,32 @@
+<div class="title">管理员密码修改</div>
+<div class="top-button">
+	相关操作：<a href="{:U('Admin/index')}" class="light">管理员列表</a>
+</div>
+<div class="list auto">
+	<form method="post">
+	<table class="t2 t3">
+		<tr><th>新密码：</th><td><input type="password" name="password" id="pwd" required></td></tr>
+		<tr><th>确认密码：</th><td><input type="password" id="pwd2"  required></td></tr>
+	</table>
+	<div class="btn1">
+		<button type="submit" class="btn btn-primary" ><i class="icon-save"></i> 修改密码</button>
+	</div>
+	</form>
+</div>
+<script>
+//失去焦点时验证表单
+$("#pwd2").blur(function(){
+	if($(this).val() !== $("#pwd").val()){
+		$(this).addClass('error');
+	}else{
+		$(this).removeClass('error');
+	}
+});
+//表单提交时验证表单
+$("form").submit(function(){
+	if($("#pwd2").val() !== $("#pwd").val()){
+		alert('两次输入密码不一致！');
+		return false;
+	}
+});
+</script>

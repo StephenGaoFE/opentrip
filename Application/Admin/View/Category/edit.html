@@ -1,0 +1,23 @@
+<div class="title">分类修改</div>
+<div class="top-button">
+	相关操作：<a href="{:U('Category/index')}" class="light">分类列表</a>
+</div>
+<div class="list auto">
+	<form method="post">
+	<input type="hidden" name="id" value="{$id}">
+	<table class="t2 t3">
+		<tr><th>上级分类：</th><td>
+			<select name="pid">
+				<option value="0">顶级分类</option>
+				<foreach name="category" item="v">
+					<option value="{$v.id}" <eq name="v.id" value="$pid">selected</eq> >{:str_repeat('— ',$v['level'])}{$v.name}</option>
+				</foreach>
+			</select>
+		</td></tr>
+		<tr><th>分类名称：</th><td><input type="text" name="name" value="{$name}"></td></tr>
+	</table>
+	<div class="btn1">
+		<button type="submit" class="btn btn-primary" ><i class="icon-save"></i> 修改分类</button>
+	</div>
+	</form>
+</div>

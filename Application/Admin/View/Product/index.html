@@ -1,0 +1,82 @@
+<div class="title">产品列表</div>
+<div class="top-button">
+	选择产品分类：<select id="category">
+		<option value="-1" >全部</option>
+		<option value="0" <eq name="cid" value="0">selected</eq>>未分类</option>
+		<foreach name="category" item="v">
+			<option value="{$v.id}" <eq name="v.id" value="$cid">selected</eq>>{:str_repeat('— ',$v['level'])}{$v.name}</option>
+		</foreach>
+	</select>
+	<a href="{:U('Product/add',array('cid'=>$cid))}" class="btn btn-primary"><i class="icon-plus"></i> 添加产品</a>
+	<!-- <a href="{:U('Category/add')}" class="btn btn-primary"><i class="icon-plus"></i> 添加分类</a> -->
+</div>
+
+	<table class="ui-table bg-white">
+	<thead>
+		<tr>
+		<th width="10%">产品分类</th>
+		<th>产品名称</th>
+		<th width="10%">库存</th>
+		<th width="10%">上架</th>
+		<th width="10%">推荐</th>
+		<th width="20%">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<foreach name="product.data" item="v">
+			<tr>
+			<td>
+				<empty name="v.category_id">
+					<a href="{:U('Product/index','cid=0')}">未分类</a>
+				<else/>
+					<a href="{:U('Product/index',array('cid'=>$v['category_id']))}">{$v.category_name}</a>
+				</empty>
+			</td>
+			<td>{$v.name}</td><td>{$v.stock}</td>
+			<td><a href="#" class="act-onsale" data-id="{$v.id}" data-status="{$v.on_sale}"><eq name="v.on_sale" value="yes">是<else/>否</eq></a></td>
+			<td><a href="#" class="act-recommend" data-id="{$v.id}" data-status="{$v.recommend}"><eq name="v.recommend" value="yes">是<else/>否</eq></a></td><td>
+			<a href="{:U('Product/edit',array('id'=>$v['id'],'cid'=>$v['category_id'],'p'=>$p))}" class="btn btn-primary"><i class="icon-edit"></i> 修改</a>　<a href="#" class="btn btn-danger act-del" data-id="{$v.id}"><i class="icon-trash"></i> 删除</a></td>
+			</tr>
+		</foreach>
+	</tbody>
+	</table>
+
+<div class="pagelist">{$product.pagelist}</div>
+<form method="post" id="form">
+	<input type="hidden" name="id" id="target_id">
+	<input type="hidden" name="field" id="target_field">
+	<input type="hidden" name="status" id="target_status">
+</form>
+<script>
+	//下拉菜单跳转
+	$("#category").change(function(){
+		var url = "{:U('Product/index',array('cid'=>'_ID_'))}";
+		location.href = url.replace("_ID_",$(this).val());
+	});
+	<eq name="priv" value="0">
+	//快捷操作-推荐 推荐只有管理员能执行
+		$(".act-recommend").click(function(){
+			change_status($(this),'recommend');
+		});
+	</eq>
+	//快捷操作
+	function change_status(obj,field){
+		$("#target_id").val(obj.attr("data-id"));
+		$("#target_field").attr("value",field)
+		$("#target_status").attr("value",(obj.attr("data-status")=="yes") ? "no" : "yes");
+		$("#form").attr("action","{:U('Product/change',array('p'=>$p,'cid'=>$cid))}").submit();
+	}
+	//快捷操作-上架
+	$(".act-onsale").click(function(){
+		change_status($(this),'on_sale');
+	});
+	
+	//快捷操作-删除
+	$(".act-del").click(function(){
+		if(confirm('确定要删除吗？')){
+			$("#target_id").val($(this).attr("data-id"));
+			$("#form").attr("action","{:U('Product/del',array('p'=>$p,'cid'=>$cid))}").submit();
+		}
+	});
+	
+</script>

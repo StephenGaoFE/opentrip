@@ -1,0 +1,306 @@
+<script type="text/javascript" src="__PUBLIC__/Home/js/myfocus-2.0.1.min.js"></script><!--引入myFocus库-->
+<script type="text/javascript">
+myFocus.set({
+    id:'boxID',//焦点图盒子ID
+    pattern:'mF_games_tb',//风格应用的名称
+    time:10,//切换时间间隔(秒)
+    trigger:'click',//触发切换模式:'click'(点击)/'mouseover'(悬停)
+    width:690,//设置图片区域宽度(像素)
+    height:400,//设置图片区域高度(像素)
+    txtHeight:0//文字层高度设置(像素),'default'为默认高度，0为隐藏
+});
+</script>
+
+<!--detail start here-->
+	<div class="top">
+		<div class="position">
+			<a href="{:U('Index/index')}">首页</a> > 
+			<foreach name="path" item="v">&nbsp;<a href="{:U('Index/find',array('cid'=>$v['id']))}">{$v.name}</a>&nbsp;&gt;</foreach>&nbsp;{$product.name}
+		</div>
+		<div class="tour-show">
+			<div class="tour-show-left">
+			<div id="boxID"><!--焦点图盒子-->
+			<div class="loading"><img src="__PUBLIC__/Home/img/loading.gif" alt="请稍候..." /></div><!--载入画面(可删除)-->
+  			<div class="pic"><!--内容列表(li数目可随意增减)-->
+  			<ul>
+  				<li><img src="__PUBLIC__/Uploads/focus/{$product.pic1}" thumb="" alt="" text="" /></li>
+  				<li><img src="__PUBLIC__/Uploads/focus/{$product.pic2}" thumb="" alt="" text="" /></li>
+  				<li><img src="__PUBLIC__/Uploads/focus/{$product.pic3}" thumb="" alt="" text="" /></li>
+  				<li><img src="__PUBLIC__/Uploads/focus/{$product.pic4}" thumb="" alt="" text="" /></li>
+  				<li><img src="__PUBLIC__/Uploads/focus/{$product.pic5}" thumb="" alt="" text="" /></li>
+  			</ul>
+  			</div>
+		</div>	
+			</div>
+			<div class="tour-show-right">
+				<h3>{$product.name}</h3>
+				<div class="confirm">
+					<notempty name="product.sn">
+						<span class="price_small_blue">【产品编码】{$product.sn}</span><br/>
+					</notempty>
+					<eq name="product.confirm" value="yes">
+						<span class="price_small_blue">二次确认（本产品下单后，我们会与您联系核实出游信息）</span>
+					</eq>
+					
+				</div>
+				
+				<div class="price-wrap">
+					<eq name="product.price" value="0">
+						￥实时计价
+					<else/>
+						￥{$product.price}<span class="price_small_red">人起</span>
+					</eq>
+					<notempty name="product.market_price">
+						<span class="price_small"> 门市价 </span><span class="del">￥{$product.market_price}</span>
+					</notempty>
+					<notempty name="product.child_price">
+						<span class="price_small_red">儿童价￥{$product.child_price}</span>
+					</notempty>
+				</div>
+				
+				<div class="buy_num">
+				<div class="buy_num_left">
+					<notempty name="product.plan1_name">
+						{$product.plan1_name}:<span class="price_small_red">  {$product.plan1_price} 元</span><br>
+					</notempty>	
+					<notempty name="product.plan2_name">
+						{$product.plan2_name}:<span class="price_small_red">  {$product.plan2_price} 元</span><br>
+					</notempty>		
+					<notempty name="product.plan3_name">	
+						{$product.plan3_name}:<span class="price_small_red">  {$product.plan3_price} 元</span><br>
+					</notempty>
+				</div>	
+				<div class="buy_num_right">
+					<notempty name="product.plan4_name">
+						{$product.plan4_name}:<span class="price_small_red">  {$product.plan4_price} 元</span><br>
+					</notempty>	
+					<notempty name="product.plan5_name">
+						{$product.plan5_name}:<span class="price_small_red">  {$product.plan5_price} 元</span><br>
+					</notempty>		
+					<notempty name="product.plan6_name">	
+						{$product.plan6_name}:<span class="price_small_red">  {$product.plan6_price} 元</span><br>
+					</notempty>
+				</div>	
+				<div class="buy_num_bottom">		
+					购买数量：
+						<input type="button" value="-" class="cnt-btn" />
+						<input type="text" value="1" id="num" class="num-btn" />
+						<input type="button" value="+" class="cnt-btn" />&nbsp;
+						库存：<span class="price_small_red">{$product.stock}</span>
+				</div>
+				</div>
+				<div class="TagList">
+                    	<span title="" class="Tag">{$product.highlight1}</span>
+                    <notempty name="product.highlight2">
+                    	<span title="" class="Tag">{$product.highlight2}</span>
+                    </notempty>
+                    <notempty name="product.highlight3">
+					<span title="" class="Tag">{$product.highlight3}</span>
+					</notempty>	
+ 				</div>
+ 				<div class="btn">
+ 					<span id="submbuy">立即预定</span>
+ 				</div>
+ 				<div>
+ 					<p>若该产品不匹配您的出游计划或不满足您的需求，请在首页点击“个人定制”，我们将根据您的要求微调出行方案或为您定制个性化方案。</p>
+ 				</div>
+ 				<form method="post" action="{:U('Order/buy')}" id="form_buy">
+				<input type="hidden" name="buy[0][id]" value="{$product.id}">
+				<input type="hidden" name="buy[0][num]" value="" id="form_num">
+				</form>
+			</div> <!--tour-show-right end-->
+		</div> <!--tour-show end-->	
+   </div>
+	<!--container end--> 
+	<!--detail navi bar start-->
+	<div class="detail_navbar">
+	<ul class="nav nav-tabs">
+			<li><a href="#product-detail" class="active">产品详情</a></li>
+			<li><a href="#journey-ref">行程参考</a></li>
+ 			<li><a href="#cost-description">费用说明</a></li>
+			<li><a href="#reserve-notice">预定须知</a></li>
+			<li><a href="#return-restriction">退改规定</a></li>
+ 			<li><a href="#question-info">问题咨询</a></li> 
+	</ul>
+	</div>
+	<!--detail navi bar end-->
+	<!--detail wrap start-->
+	<div class="detail-wrap">
+		<div class="detail">
+			<div class="detail-left">
+			<!-- start of 产品详情 -->
+			<div class="ProInfoBox" id="product-detail">
+				<p class="TourInfoHeadBig">产品详情</p><br>
+
+				<notempty name="product.continent">
+					<strong>【所属大洲】</strong> {$product.continent}<br>
+				</notempty>
+				<notempty name="product.country">
+					<strong>【所属国家】</strong> {$product.country}<br>
+				</notempty>
+				<notempty name="product.days">
+					<strong>【行程天数】</strong> {$product.days}<br>
+				</notempty>
+				<!-- 签证属性 -->
+				<notempty name="product.place_of_issue">
+					<strong>【护照签发地】</strong> {$product.place_of_issue}<br>
+				</notempty>
+				<notempty name="product.visa_type">
+					<strong>【签证代办类型】</strong> {$product.visa_type}<br>
+				</notempty>
+				<notempty name="product.sent_visa_place">
+					<strong>【送签地】</strong> {$product.sent_visa_place}<br>
+				</notempty>
+				
+				<!--线路属性 -->
+				<notempty name="product.city">
+					<strong>【所在城市】</strong> {$product.city}<br>
+				</notempty>
+				<notempty name="product.detail_property">
+					<strong>【产品主题】</strong> {$product.detail_property}<br>
+				</notempty>
+				<!--邮轮属性 -->
+				<notempty name="product.ship_depart_city">
+					<strong>【出发城市】</strong> {$product.ship_depart_city}<br>
+				</notempty>
+				<notempty name="product.ship_route">
+					<strong>【邮轮航线】</strong> {$product.ship_route}<br>
+				</notempty>
+				<notempty name="product.ship_company">
+					<strong>【邮轮公司】</strong> {$product.ship_company}<br>
+				</notempty>
+				<notempty name="product.ship_name">
+					<strong>【船名】</strong> {$product.ship_name}<br>
+				</notempty>
+				<notempty name="product.ship_depart_time">
+					<strong>【出游日期】</strong> {$product.ship_depart_time}<br>
+				</notempty>
+				
+				
+				<notempty name="product.sn">
+					<strong>【产品编码】</strong> {$product.sn}<br>
+				</notempty>
+				<notempty name="product.people">
+					<strong>【出游人群】</strong> {$product.people}<br>
+				</notempty>
+				<notempty name="product.start_time">
+					<strong>【出游日期】</strong> {$product.start_time}<br>
+				</notempty>
+				
+				
+				<notempty name="product.start">
+					<strong>【出发地】</strong>&nbsp;&nbsp;&nbsp;&nbsp;{$product.start}<br>
+				</notempty>
+				<notempty name="product.path">	
+					<strong>【途径】</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$product.path}<br>
+				</notempty>
+				<notempty name="product.end">	
+					<strong>【目的地】</strong> &nbsp;&nbsp;&nbsp;{$product.end}<br>
+				</notempty>
+				<notempty name="product.deposit">
+					<strong>【定金】</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$product.deposit}<br>
+				</notempty>
+				<notempty name="product.language">
+					<strong>【服务语言】</strong> {$product.language}<br>
+				</notempty>
+				<br>
+				{$product.desc}
+			</div>
+			<!-- 	start of 行程参考 -->
+			<div class="tour-info" id="journey-ref">
+				<div class="ProInfoBox">
+				<p class="TourInfoHeadBig">行程参考</p><br>
+				{$product.travel_ref}
+				</div>
+			</div>
+			<!-- start of tour-info1费用说明 -->
+			<div class="tour-info" id="cost-description">
+			<p class="TourInfoHeadBig">费用说明:</p>
+				<div class="ProInfoBox">
+				{$product.cost_desc}
+				</div>
+			</div><!-- end of tour-info1 -->						
+			
+			<!-- start of 预定须知 -->
+			<div class="tour-info" id="reserve-notice">
+				<div class="ProInfoBox">
+					<p class="TourInfoHeadBig">预定须知</p><br>
+					{$product.reserve_notice}			
+				</div>
+			</div>
+			
+			<!-- start of 退改规定 -->
+			<div class="tour-info" id="return-restriction">	
+				<div class="ProInfoBox">
+					<p class="TourInfoHeadBig">退改规定</p><br>
+					{$product.restrict}
+				</div>
+			</div>
+			<!-- start of 问题咨询 -->
+			<div class="tour-info" id="question-info">	
+				<div class="ProInfoBox">
+					<p class="TourInfoHeadBig">问题咨询</p><br>
+					{$product.info}
+				</div>
+			</div>
+			</div><!--  end of detail-left -->
+			
+			
+			<div class="detail-right">
+				<p>相关产品推荐</p>
+				<foreach name="recommend" item="v">
+					<a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank" class="Product">
+	                <i class="LazyImgBox"><empty name="v.thumb"><img src="__PUBLIC__/Common/img/preview.jpg"><else/><img src="__PUBLIC__/Uploads/small/{$v.thumb}"></empty></i>
+	                <span>{$v.name}</span>
+	                <font>￥{$v.price}</font>
+					</a>
+				</foreach>
+			</div><!--  end of detail-right -->
+		</div><!--detail  end-->	
+		<!--返回顶部  -->
+		<div class="Backbox">
+	    	<div class="plane plane_1"><a href="#"><i class="icon-angle-up icon-3x"></i></a></div>
+		</div>
+	</div>		
+	<!--detail wrap end-->	
+<script>
+
+//购买数量加减
+$(".cnt-btn").click(function(){
+	var num = parseInt($("#num").val());
+	if ($(this).val() === '-') {
+		if ( num=== 1) return;
+		$("#num").val(num-1);
+	}else if ($(this).val() === '+') {
+		if (num === {$product.stock}) return;
+		$("#num").val(num+1);
+	}
+});
+//自动纠正购买数量
+$("#num").keyup(function(){
+	var num = parseInt($(this).val());
+	if(num<1){ 
+		$(this).val(1);
+	}else if(num > {$product.stock}){
+		$(this).val({$product.stock});
+	}
+});
+
+//购买
+/* $("#submbuy").click(function(){
+	$("#form_num").val($("#num").val());
+	$("#form_buy").submit();
+}); */
+$("#submbuy").click(function(){
+	var sn = "{$product.sn}";
+	//alert(sn);
+	self.location = "{:U('Index/customize')}?sn=" + sn;
+}); 
+
+
+
+
+
+
+
+</script>	

@@ -1,0 +1,48 @@
+<div class="login_bg">
+	<div class="login_wrap">
+		<div class="login">
+			<div class="login_title">
+				注册
+			</div>
+			<div class="text">
+			<form method="post">	
+				<input name="username" id="username" type="text" placeholder="用户名" class="username" required>
+				<input name="password"  type="password" placeholder="密码" class="username" id="pwd" required>
+				<input name="password"  type="password" placeholder="确认密码" class="username" id="pwd2" required>
+				<input name="verify" type="text" placeholder="验证码" class="username" required>
+				<div class="verify">
+				<img src="{:U('User/getVerify')}" id="verify_img"  title="点击刷新验证码"/>
+				</div>
+				<div class="btn_warp">
+                    <input class="signbtn" type="submit" value="注 册">
+                </div>
+            </form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+//验证码点击刷新
+$(function(){
+	var img = $("#verify_img");
+	var src = img.attr("src")+"?";
+	img.click(function(){
+		img.attr("src",src+Math.random());
+	});
+});
+//失去焦点时验证表单
+$("#pwd2").blur(function(){
+	if($(this).val() !== $("#pwd").val()){
+		$(this).addClass('error');
+	}else{
+		$(this).removeClass('error');
+	}
+});
+//表单提交时验证表单
+$("form").submit(function(){
+	if($("#pwd2").val() !== $("#pwd").val()){
+		alert('两次输入密码不一致！');
+		return false;
+	}
+});
+</script>

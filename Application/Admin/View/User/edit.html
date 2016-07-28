@@ -1,0 +1,19 @@
+<div class="title">会员信息修改</div>
+<div class="top-button">
+	相关操作：<a href="{:U('User/index')}" class="light">会员列表</a>
+</div>
+<div class="list auto">
+	<form method="post">
+	<table class="t2 t3">
+		<tr><th>用户名：</th><td><input type="text" name="username" value="{$user.username}" required></td></tr>
+		<tr><th>联系电话：</th><td><input type="text" name="phone" value="{$user.phone}" required></td></tr>
+		<tr><th>邮箱：</th><td><input type="text" name="email" value="{$user.email}" required></td></tr>
+	</table>
+	<div class="btn1">
+		<button type="submit" class="btn btn-primary" ><i class="icon-save"></i> 修改</button>
+	</div>
+	</form>
+</div>
+<script>
+
+</script>

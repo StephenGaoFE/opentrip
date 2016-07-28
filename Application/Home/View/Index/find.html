@@ -1,0 +1,320 @@
+<div class="find">
+<div class="find-left left"><div class="title">相关产品推荐</div>
+	<foreach name="product.recommend" item="v">	<ul class="item left">
+		<li><a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank"><empty name="v.thumb"><img src="__PUBLIC__/Common/img/preview.jpg"><else/><img src="__PUBLIC__/Uploads/small/{$v.thumb}"></empty></a></li>
+		<li class="product"><a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank">{$v.name}</a></li>
+		<li class="price">￥{$v.price}</li>
+	</ul></foreach>
+</div>
+<div class="find-right left">
+	<ul class="filter">
+		<!-- <li class="filter-title">产品列表</li> -->
+		<!-- 循环输出分类 -->
+		<!-- <notempty name="category.parent">
+			<volist name="category.parent" id="v">
+				<li>
+				<p id="p{$i}">
+					<if condition="$i eq 1 ">产品类型：
+					<else />目的地：
+					</if>
+				</p>
+				<if condition="$i eq 1 ">
+					<a href="{:mkFilterURL('cid')}" class="cid-0">全部</a>
+				</if>
+				<foreach name="v" item="vv"><a href="{:mkFilterURL('cid',$vv['id'])}" class="cid-{$vv.id}" id="cid-{$vv.id}">{$vv.name}</a></foreach></li>
+			</volist>
+		</notempty> -->
+		
+		<!-- 签证筛选菜单 -->
+		<if condition="$temp_cid eq 1 ">
+			<li id="continent"><p>前往大洲：</p>
+				<a href="{:mkFilterURL('continent')}" class="continent-0">不限</a>
+				<foreach name="visa_dest" item="v" key="k">
+					<a href="{:mkFilterURL('continent',$k)}" class="continent-{$k}">{$k}</a>
+				</foreach>
+			</li>
+			<li id="country"><p>国家或地区：</p>
+				<a href="{:mkFilterURL('country')}" class="country-0">不限</a>
+			</li>
+			<li id="visa_type"><p>签证类型：</p>
+				<a href="{:mkFilterURL('visa_type')}" class="visa_type-0">不限</a>
+			</li>
+			<li><p>护照签发地：</p>
+				<a href="{:mkFilterURL('place_of_issue')}" class="place_of_issue-0">不限</a>
+				<foreach name="place_of_issue" item="v" key="k">
+					<a href="{:mkFilterURL('place_of_issue',$v)}" class="place_of_issue-{$v}">{$v}</a>
+				</foreach>
+			</li>
+			<li><p>送签地：</p>
+				<a href="{:mkFilterURL('sent_visa_place')}" class="sent_visa_place-0">不限</a>
+				<foreach name="sent_visa_place" item="v" key="k">
+					<a href="{:mkFilterURL('sent_visa_place',$v)}" class="sent_visa_place-{$v}">{$v}</a>
+				</foreach>
+			</li>
+		<!--线路筛选菜单  -->
+		<elseif condition="$temp_cid eq 2"/>
+			<li><p>前往大洲：</p>
+				<a href="{:mkFilterURL('continent')}" class="continent-0">不限</a>
+				<foreach name="route_dest" item="v" key="k">
+					<a href="{:mkFilterURL('continent',$k)}" class="continent-{$k}">{$k}</a>
+				</foreach>
+			</li>
+			<li id="country"><p>国家：</p>
+				<a href="{:mkFilterURL('country')}" class="country-0">不限</a>
+				
+			</li>
+			<li id="city"><p>城市：</p>
+				<a href="{:mkFilterURL('city')}" class="city-0">不限</a>
+			</li>
+			<li><p>天数：</p>
+				<a href="{:mkFilterURL('days')}" class="days-0">不限</a>
+				<foreach name="days" item="v" key="k">
+					<a href="{:mkFilterURL('days',$v)}" class="days-{$v}">{$v}</a>
+				</foreach>
+				
+			</li>
+			<li><p>主题：</p>
+				<a href="{:mkFilterURL('detail_property')}" class="detail_property-0">不限</a>
+				<foreach name="detail_property" item="v" key="k">
+					<a href="{:mkFilterURL('detail_property',$v)}" class="detail_property-{$v}">{$v}</a>
+				</foreach>
+			</li>
+		<!-- 邮轮筛选菜单 -->	
+		<elseif condition="$temp_cid eq 3"/>	
+			<li><p>邮轮航线：</p>
+				<a href="{:mkFilterURL('ship_route')}" class="ship_route-0">不限</a>
+				<foreach name="ship_route" item="v" key="k">
+					<a href="{:mkFilterURL('ship_route',$v)}" class="ship_route-{$v}">{$v}</a>
+				</foreach>
+			</li>
+			<li><p>邮轮公司：</p>
+				<a href="{:mkFilterURL('ship_company')}" class="ship_company-0">不限</a>
+				<foreach name="ship_company" item="v" key="k">
+					<a href="{:mkFilterURL('ship_company',$v)}" class="ship_company-{$v}">{$v}</a>
+				</foreach>
+			</li>
+			<li><p>船名：</p>
+				<a href="{:mkFilterURL('ship_name')}" class="ship_name-0">不限</a>
+				<foreach name="ship_name" item="v" key="k">
+					<a href="{:mkFilterURL('ship_name',$v)}" class="ship_name-{$v}">{$v}</a>
+				</foreach>
+			</li>
+			<li><p>出发地：</p>
+				<a href="{:mkFilterURL('ship_depart_city')}" class="ship_depart_city-0">不限</a>
+				<foreach name="ship_depart_city" item="v" key="k">
+					<a href="{:mkFilterURL('ship_depart_city',$v)}" class="ship_depart_city-{$v}">{$v}</a>
+				</foreach>
+			</li>
+			<li><p>出发日期：</p>
+				<a href="{:mkFilterURL('ship_depart_time')}" class="ship_depart_time-0">不限</a>
+				<foreach name="ship_depart_time" item="v" key="k">
+					<a href="{:mkFilterURL('ship_depart_time',$v)}" class="ship_depart_time-{$v}">{$v}</a>
+				</foreach>
+			</li>
+		</if>
+		<!-- <li><p>价格：</p>
+			<a href="{:mkFilterURL('price')}" class="price-0">全部</a>
+			<a href="{:mkFilterURL('price','0-500')}" class="price-0-500">500元以下</a>
+			<a href="{:mkFilterURL('price','500-1000')}" class="price-500-1000">500-1000元</a>
+			<a href="{:mkFilterURL('price','1000-5000')}" class="price-1000-5000">1000-5000元</a>
+			<a href="{:mkFilterURL('price','5000-100000')}" class="price-5000-100000">5000元以上</a>
+		</li>  -->
+		<li><p>排序：</p><a
+			href="{:mkFilterURL('order')}" class="order-0">最新上架</a><a 
+			href="{:mkFilterURL('order','price-asc')}" class="order-price-asc">价格升序</a><a
+			href="{:mkFilterURL('order','price-desc')}" class="order-price-desc">价格降序</a>
+		</li>
+	</ul>
+	<div class="find-item">
+		<empty name="product.data"><div class="empty-tip">没有找到您需要的产品。</div>
+		<else/>
+		<foreach name="product.data" item="v">
+		<ul class="item left">
+			<li><a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank"><empty name="v.thumb"><img src="__PUBLIC__/Common/img/preview.jpg"><else/><img src="__PUBLIC__/Uploads/small/{$v.thumb}"></empty></a></li>
+			<li class="product"><a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank">{$v.name}</a></li>
+			<li class="price">￥{$v.price}</li>
+		</ul>
+		</foreach>
+		<div class="clear"></div>
+		<div class="pagelist">{$product.pagelist}</div>
+		</empty>
+	</div>
+</div>
+</div>
+<script>
+
+//Think.get.continent：从地址栏取值
+//筛选签证目的地,点击洲显示国家
+<if condition="$temp_cid eq 1 ">
+	<foreach name="visa_dest" item="v" key="k">
+		<if condition="$Think.get.continent eq $k ">
+			//alert("con");
+			$("#country").empty();
+			$("#country").append('<p>国家或地区：</p><a href="{:mkFilterURL('country')}" class="country-0">不限</a>');
+			<foreach name="v" item="vv" key="kk">
+				$("#country").append('<a href="{:mkFilterURL('country',$kk)}" class="country-{$kk}">{$kk}</a>');
+			</foreach> 
+		</if>
+	</foreach> 	
+
+<elseif condition="$temp_cid eq 2 "/>
+//alert("123");
+	<foreach name="route_dest" item="v" key="k">
+		<if condition="$Think.get.continent eq $k ">
+			//alert("con");
+			$("#country").empty();
+			$("#country").append('<p>国家或地区：</p><a href="{:mkFilterURL('country')}" class="country-0">不限</a>');
+			<foreach name="v" item="vv" key="kk">
+				$("#country").append('<a href="{:mkFilterURL('country',$kk)}" class="country-{$kk}">{$kk}</a>');
+			</foreach> 
+		</if>
+	</foreach> 	
+</if>
+
+//点击国家筛选签证类型,签证
+<if condition="$temp_cid eq 1 ">
+<foreach name="visa_dest" item="zhou">
+	<foreach name="zhou" item="v" key="k">
+		<if condition="$Think.get.country eq $k ">
+			//alert("con");
+			$("#visa_type").empty();
+			$("#visa_type").append('<p>签证类型：</p><a href="{:mkFilterURL('visa_type')}" class="visa_type-0">不限</a>');
+			<foreach name="v" item="vv" key="kk">
+				$("#visa_type").append('<a href="{:mkFilterURL('visa_type',$vv)}" class="visa_type-{$vv}">{$vv}</a>');
+			</foreach> 
+		</if>
+	</foreach>
+</foreach>	
+
+</if> 
+
+
+//点击国家筛选城市,线路
+<if condition="$temp_cid eq 2 ">
+<foreach name="route_dest" item="zhou">
+	<foreach name="zhou" item="v" key="k">
+		<if condition="$Think.get.country eq $k ">
+			//alert("con");
+			$("#city").empty();
+			$("#city").append('<p>城市：</p><a href="{:mkFilterURL('city')}" class="city-0">不限</a>');
+			<foreach name="v" item="vv" key="kk">
+				$("#city").append('<a href="{:mkFilterURL('city',$vv)}" class="city-{$vv}">{$vv}</a>');
+			</foreach> 
+		</if>
+	</foreach>
+</foreach>	
+
+</if> 
+
+
+//筛选列表，分类的当前选中效果
+/* <foreach name="category.pids" item="v">
+	$(".cid-{$v}").addClass("curr");
+</foreach> */
+
+
+
+//产品价格的选中效果
+/* <present name="Think.get.price">
+	$(".price-{$Think.get.price}").addClass("curr");
+<else/>
+	$(".price-0").addClass("curr");
+</present>  */
+
+//产品排序的选中效果
+<present name="Think.get.order">
+	$(".order-{$Think.get.order}").addClass("curr");
+<else/>
+	$(".order-0").addClass("curr");
+</present>
+
+
+
+//筛选选中效果，签证
+<present name="Think.get.continent">
+	$(".continent-{$Think.get.continent}").addClass("curr");
+<else/>
+	$(".continent-0").addClass("curr");
+</present>
+
+<present name="Think.get.country">
+	$(".country-{$Think.get.country}").addClass("curr");
+<else/>
+	$(".country-0").addClass("curr");
+</present>
+
+<present name="Think.get.visa_type">
+$(".visa_type-{$Think.get.visa_type}").addClass("curr");
+<else/>
+$(".visa_type-0").addClass("curr");
+</present>
+
+<present name="Think.get.visa_type">
+$(".visa_type-{$Think.get.visa_type}").addClass("curr");
+<else/>
+$(".visa_type-0").addClass("curr");
+</present>
+
+<present name="Think.get.place_of_issue">
+$(".place_of_issue-{$Think.get.place_of_issue}").addClass("curr");
+<else/>
+$(".place_of_issue-0").addClass("curr");
+</present>
+
+<present name="Think.get.sent_visa_place">
+$(".sent_visa_place-{$Think.get.sent_visa_place}").addClass("curr");
+<else/>
+$(".sent_visa_place-0").addClass("curr");
+</present>
+
+//筛选选中效果，线路
+<present name="Think.get.city">
+$(".city-{$Think.get.city}").addClass("curr");
+<else/>
+$(".city-0").addClass("curr");
+</present>
+
+<present name="Think.get.days">
+$(".days-{$Think.get.days}").addClass("curr");
+<else/>
+$(".days-0").addClass("curr");
+</present>
+
+<present name="Think.get.detail_property">
+$(".detail_property-{$Think.get.detail_property}").addClass("curr");
+<else/>
+$(".detail_property-0").addClass("curr");
+</present>
+
+//筛选选中效果，邮轮
+<present name="Think.get.ship_route">
+$(".ship_route-{$Think.get.ship_route}").addClass("curr");
+<else/>
+$(".ship_route-0").addClass("curr");
+</present>
+
+<present name="Think.get.ship_company">
+$(".ship_company-{$Think.get.ship_company}").addClass("curr");
+<else/>
+$(".ship_company-0").addClass("curr");
+</present>
+
+<present name="Think.get.ship_name">
+$(".ship_name-{$Think.get.ship_name}").addClass("curr");
+<else/>
+$(".ship_name-0").addClass("curr");
+</present>
+
+<present name="Think.get.ship_depart_city">
+$(".ship_depart_city-{$Think.get.ship_depart_city}").addClass("curr");
+<else/>
+$(".ship_depart_city-0").addClass("curr");
+</present>
+
+<present name="Think.get.ship_depart_time">
+$(".ship_depart_time-{$Think.get.ship_depart_time}").addClass("curr");
+<else/>
+$(".ship_depart_time-0").addClass("curr");
+</present>
+
+</script>

@@ -1,0 +1,57 @@
+<div class="title">管理员</div>
+<p>您的级别是：
+<if condition="$priv eq 0">超级管理员</if>
+<if condition="$priv eq 1">普通管理员</if>
+</p>
+<eq name="priv" value="0">
+	<a href="{:U('Admin/add')}" class="btn btn-primary"><i class="icon-plus"></i> 添加管理员</a>&nbsp;&nbsp;
+</eq>
+<a href="{:U('Admin/edit')}?id={$id}" class="btn btn-primary"><i class="icon-edit"></i> 修改密码</a>
+<eq name="priv" value="0">
+<table class="ui-table bg-white">
+	<thead>
+		<tr>
+		<th width="10%">管理员ID</th>
+		<th>管理员用户名</th>
+		<th width="20%">权限</th>
+		<th width="20%">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<foreach name="list" item="v">
+		<tr>
+			<td>{$v.id}</td><td>{$v.username}</td>
+			<td>
+				<if condition="$v.priv eq 0">超级管理员</if>
+				<if condition="$v.priv eq 1">普通管理员</if>
+				{$v.priv}
+			</td>
+			<td>
+			
+				<a href="{:U('Admin/edit',array('id'=>$v['id']))}" class="btn btn-primary"><i class="icon-edit"></i> 修改</a>　
+				<a href="#"  data-id="{$v.id}" class="btn btn-danger act-del"><i class="icon-trash"></i> 删除</a>
+           
+            </td>
+		</tr>
+		</foreach>
+	</tbody>
+</table>
+ 
+<div class="pagelist">{$page}</div>
+<form method="post" id="form">
+	<input type="hidden" name="id" id="target_id">
+</form>
+</eq>
+
+<script>
+//彻底删除
+$(".act-del").click(function(){
+	if(confirm('确定要彻底删除吗？')){
+		$("#target_id").val($(this).attr("data-id"));
+		$("#form").attr("action","{:U('Admin/del')}").submit();
+	}
+});
+</script>
+
+
+

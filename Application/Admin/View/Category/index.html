@@ -1,0 +1,36 @@
+<div class="title">产品分类</div>
+<div class="top-button">
+	相关操作：<a href="{:U('Category/add')}" class="light">添加分类</a>
+</div>
+
+<table class="ui-table bg-white w400">
+	<thead>
+		<tr>
+		<th width="40%">分类名称</th>
+		<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<foreach name="category" item="v">
+			<tr>
+			<td>{:str_repeat('— ',$v['level'])}{$v.name}</td>
+			<td>
+			<a href="{:U('Category/edit',array('id'=>$v['id']))}" class="btn btn-primary"><i class="icon-edit"></i> 修改</a>　
+			<a href="#"  data-id="{$v.id}" class="btn btn-danger act-del"><i class="icon-trash"></i> 删除</a>
+			</td>
+			</tr>
+		</foreach>
+	</tbody>
+</table>
+<form method="post" id="form">
+	<input type="hidden" name="id" id="target_id">
+</form>
+<script>
+	//删除
+	$(".act-del").click(function(){
+		if(confirm('确定要删除吗？（该分类下的产品将归于未分类）')){
+			$("#target_id").val($(this).attr("data-id"));
+			$("#form").attr("action","{:U('Category/del')}").submit();
+		}
+	});
+</script>

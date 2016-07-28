@@ -1,0 +1,114 @@
+body,ul,h1,p,dl,dt,dd{margin:0;padding:0;}
+body{color:#555;min-width:592px;overflow:hidden;background:#eee;background-image: url(../img/bg.png);font-family:Helvetica,simsun;}
+
+ul{list-style:none;}
+a{color:#07A;text-decoration:none;}
+a:hover{;text-decoration:underline;}
+.left{float:left;}
+.right{float:right;}
+.clear{clear:both;}
+.center{text-align:center;}
+
+/*登录页*/
+.login{overflow:visible;}
+.login .box{width:400px;background:#fff;margin:7% auto;padding:50px;box-shadow:0 0 15px #ccc;}
+.login .box h1{font-size:24px;color:#555;text-align:center;text-shadow: 1px 1px 1px #ccc;}
+.login .box img{cursor:pointer;}
+.login .box table{width:100%;height:300px;margin:0 auto;margin-top:20px;}
+.login .box th{text-align:right;font-weight:normal;}
+.login .box .input{width:250px;height:20px;border:1px solid #ddd;padding:5px;color:#666;font-size:20px;}
+.login .box .login_btn{width:80px;height:30px;margin:0 auto;background:#0077A2;color:#fff;border:1px solid #DEEFFA;cursor:pointer;}
+.login .box .login_btn:hover{background:#005580;}
+
+/*顶部*/
+.top{height:42px;background:#444;background:url('../img/top_bg.png');line-height:42px;color:#fff;font-size:14px;}
+.top h1{height:42px;line-height:42px;font-size:19px;color:#FFF;margin-left:40px;font-weight:bold;letter-spacing: 2px;}
+.top h1 span{color:#ddd;font-weight:normal;}
+.top ul{margin-right:50px;}
+.top li{float:left;margin-left:15px;}
+.top a{color:#ccc;}
+
+/*顶部以下*/
+.main{position:absolute;top:43px;left:0px;right:0px;bottom:0px;min-width:700px;}
+.main{*height:100%;}/*IE Fix*/
+
+/*左侧菜单*/
+.menu{width:20%;height:100%;min-width:150px;}
+.menu .box{margin-left:20px;margin-top:15px;border: 1px solid #ccc;box-shadow: 0px 1px 0px #ffffff;border-radius:3px;background:#fff;}
+.menu .box .head{height:43px;border-bottom:1px solid #aaa;background:url(../img/menu_top_bg.png);color:#333;text-shadow: 1px 1px 1px #fff;}
+.menu .box .head i{background:url(../img/menu_top_icon.png);width:17px;height:14px;display:block;margin:15px 5px 0 15px;float:left;}
+.menu .box .head div{float:left;margin-top:12px;}
+.menu li{height:36px;}
+/*左侧菜单 链接按钮*/
+.menu a{height:36px;display:block;text-decoration:none;color:#555;text-indent:20px;line-height:36px;font-size:14px;}
+.menu a:hover{height:34px;line-height:34px;background:#EAF4FB;color:#005580;border-top:1px solid #ddd;border-bottom:1px solid #ddd;background: #eee;}
+.menu .curr{background:url(../img/menu_curr_bg.png) !important;color:#fff !important;border:0 !important;height:36px !important;line-height:36px !important;}
+
+/*右侧内容*/
+.content{position:absolute;top: 0px;right:0px;left:21%;bottom:0;overflow-y:auto;font-size:14px;}
+.content .item{line-height:40px;margin-top:18px;margin-left:15px;margin-bottom:30px;width:98%;overflow:hidden;}
+.content .title{color:#444;margin-bottom:10px;font-family:'Microsoft YaHei';font-size:22px;}
+
+.content .bordered {border: solid #dadada 1px;padding-top:5px;padding-bottom:15px; background-color:#fff;margin-right:20px;margin-bottom:20px;}
+.content .bordered dt{border-bottom: solid #DFE4E7 1px;text-align:left; padding-bottom:5px;margin-bottom:5px;text-indent:15px;font-weight:bold;}
+.content .bordered dd{margin-left:35px;}
+
+/* .content .top-button{line-height:20px;}
+.content .top-button a{display:inline-block;margin-right:12px;padding:0 11px;font-size:12px;height:25px;line-height:25px;text-align:center;background:#ddd;color:#555;cursor:pointer;}
+.content .top-button a:hover{background:#dfdfdf;color:#005580;text-decoration:none;}
+.content .top-button .light{background:#0088B3;color:#fff !important;}
+.content .top-button .light:hover{background:#005580;}*/
+.content .top-button select{height:25px;min-width:80px;border:1px solid #bbb;margin-right:12px;}
+ 
+.content .list{margin-right:20px;padding:20px;background:#fff;margin-top:15px;border-radius:4px;border:1px solid #ccc;}
+.content .list .btn{text-align:center; margin-left: 10px;}
+.btn1{margin-left: 90px;}
+.content .list .btn input{margin:0 5px;padding:5px 10px;cursor:pointer;}
+.content .list .t1{text-align:center;width:100px;}
+.content .list .t2 {width:auto;}
+.content .list .t2 td{border:0}
+.content .list .t2 th{width:100px; text-align:right;font-weight:normal;vertical-align:top;}
+.content .list .t2 select{height:28px;min-width:80px;border:1px solid #aaa;}
+.content .list .t2 input[type="text"]{height:26px;line-height:26px; padding:2px;width:150px;border:1px solid #aaa;}
+.content .list .t2 input[type="password"]{height:26px;line-height:26px; padding:2px;width:150px;border:1px solid #aaa;}
+.content .list .t2 .big{width:320px!important;}
+.content .list .t2 .small{width:80px!important;}
+.content .list .t2 textarea{margin-top:10px;border:1px solid #aaa;width:300px;height:80px;}
+/* .content .list .t2 input[type="file"]{font-size:13px;} */
+.content .list .t2 img{border:1px dotted #aaa;border-radius:4px;width:150px;}
+
+.content .auto{/*float:left;*/min-width:450px;}
+.content .auto .t3{width:100%!important;}
+.content .auto .t4{/*margin-left:15px;*/line-height:35px;}
+/* .content .full table{width:100%;line-height:36px;text-indent:10px;border-collapse:collapse;}
+.content .full table td{border-top:1px solid #ccc;white-space:nowrap;}
+.content .full table th{text-align:left;font-weight:bold;white-space:nowrap;} */
+.content .tip{background:#fff;border:1px solid #ccc;border-radius:4px;margin:20px 20px 20px 0;padding:10px 30px;}
+.content .mssage{line-height:35px;background:#FFF;color:#0088B3;border:1px solid #55BBff;text-indent:20px;border-radius:4px;margin-top:10px;width:490px;}
+
+.content .pagelist{line-height:14px;margin-top:20px;text-align:center;}
+.content .pagelist a{padding:5px 8px;margin:0 2px;display:inline-block;border:1px solid #ccc;background:#fff;}
+.content .pagelist a:hover{text-decoration:none;background:#eee;}
+.content .pagelist span{padding:5px 8px;margin:0 2px;}
+
+.content .editor{margin: 10px 0 15px 44px;line-height:normal;overflow: visible;}
+.content .editor .edui-editor-body ul{list-style:disc;margin:1em 0;padding-left:40px}
+.content .editor .edui-editor-body a{text-decoration:underline;}
+
+.bg-grey{
+	background-color:#eee;
+}
+.bg-white{
+	background-color:white;
+}
+.ui-table {margin: 20px auto; border-collapse: collapse; font-size: 14px; text-align: center; color: #666; width:100%;}
+.ui-table th, .ui-table td {padding: 4px 6px; border: 1px solid #ccc;text-align: center;}
+.ui-table th {background-color: #f0f0f0; }
+
+.w400{
+	width: 400px;
+	margin: 0;
+}
+.error{
+    border: 1px solid red !important;
+}

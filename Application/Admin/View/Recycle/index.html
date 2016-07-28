@@ -1,0 +1,58 @@
+<div class="title">产品回收站</div>
+<div class="top-button">
+	相关操作：<a href="{:U('Product/index')}" class="light">产品列表</a>
+</div>
+
+
+<table class="ui-table bg-white">
+	<thead>
+		<tr>
+		<th width="10%">产品分类</th>
+		<th>产品名称</th>
+		<th width="10%">库存</th>
+		<th width="10%">上架</th>
+		<th width="10%">推荐</th>
+		<th width="20%">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<foreach name="product.data" item="v">
+			<tr>
+			<td>
+				<empty name="v.category_id">
+					<a href="{:U('Product/index','cid=0')}">未分类</a>
+				<else/>
+					<a href="{:U('Product/index',array('cid'=>$v['category_id']))}">{$v.category_name}</a>
+				</empty>
+			</td>
+			<td>{$v.name}</td><td>{$v.stock}</td>
+			<td><eq name="v.on_sale" value="yes">是<else/>否</eq></td>
+			<td><eq name="v.recommend" value="yes">是<else/>否</eq></td>
+			<td>
+			<a href="#" class="btn btn-success act-rec" data-id="{$v.id}"><i class="icon-undo"></i> 恢复</a>　
+			<a href="#" class="btn btn-danger act-del" data-id="{$v.id}"><i class="icon-trash"></i> 删除</a>
+			</td>
+			</tr>
+		</foreach>
+	</tbody>
+</table>
+
+
+<div class="pagelist">{$product.pagelist}</div>
+<form method="post" id="form">
+	<input type="hidden" name="id" id="target_id">
+</form>
+<script>
+	//彻底删除
+	$(".act-del").click(function(){
+		if(confirm('确定要彻底删除吗？')){
+			$("#target_id").val($(this).attr("data-id"));
+			$("#form").attr("action","{:U('Recycle/del',array('p'=>$p))}").submit();
+		}
+	});
+	//恢复
+	$(".act-rec").click(function(){
+		$("#target_id").val($(this).attr("data-id"));
+		$("#form").attr("action","{:U('Recycle/rec',array('p'=>$p))}").submit();
+	});
+</script>

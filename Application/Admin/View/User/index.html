@@ -1,0 +1,38 @@
+<div class="title">会员列表</div>
+<table class="ui-table bg-white">
+	<thead>
+		<tr>
+		<th width="10%">会员ID</th>
+		<th>会员名</th>
+		<th width="20%">联系电话</th>
+		<th width="20%">邮箱</th>
+		<th width="20%">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<foreach name="list" item="v">
+		<tr>
+			<td>{$v.id}</td><td>{$v.username}</td><td>{$v.phone}</td><td>{$v.email}</td>
+			<td>
+				<eq name="priv" value="0">
+				<a href="{:U('User/edit',array('id'=>$v['id']))}" class="btn btn-primary"><i class="icon-edit"></i> 修改</a>　
+				<a href="#"  data-id="{$v.id}" class="btn btn-danger act-del"><i class="icon-trash"></i> 删除</a>
+            	</eq>
+            </td>
+		</tr>
+		</foreach>
+	</tbody>
+</table>
+<div class="pagelist">{$page}</div>
+<form method="post" id="form">
+	<input type="hidden" name="id" id="target_id">
+</form>
+<script>
+//彻底删除
+$(".act-del").click(function(){
+	if(confirm('确定要彻底删除吗？')){
+		$("#target_id").val($(this).attr("data-id"));
+		$("#form").attr("action","{:U('User/del')}").submit();
+	}
+});
+</script>

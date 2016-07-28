@@ -1,0 +1,126 @@
+ <!--slide start -->
+	<div class="slide">
+        <div id="myCarousel" class="carousel slide">
+        <ol class="carousel-indicators" >
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
+        <div class="carousel-inner">
+        <div class="item active" sytle="height:600px;">
+        <img src="__PUBLIC__/Home/img/cover/cover01.jpg" width="1920" height="600" alt=""/></div>
+        <div class="item" sytle="height:600px;">
+        <img src="__PUBLIC__/Home/img/cover/cover02.jpg" width="1920" height="600" alt=""/></div>
+        <div class="item" sytle="height:600px;">
+        <img src="__PUBLIC__/Home/img/cover/cover03.jpg" width="1920" height="600" alt=""/></div>
+        <div class="item" sytle="height:600px;">
+        <img src="__PUBLIC__/Home/img/cover/cover04.jpg" width="1920" height="600" alt=""/></div>
+        <div class="item" sytle="height:600px;">
+        <img src="__PUBLIC__/Home/img/cover/cover05.jpg" width="1920" height="600" alt=""/></div>
+        <div class="item" sytle="height:600px;">
+        <img src="__PUBLIC__/Home/img/cover/cover06.jpg" width="1920" height="600" alt=""/></div>
+        </div>
+        <a href="#myCarousel" data-slide="prev" class="carousel-control left">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a href="#myCarousel" data-slide="next" class="carousel-control right">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+        </div>
+	</div>
+<!--slide end -->
+</div>
+<!--header end -->
+<!--私人定制 start here-->
+<div class="dingzhi-wrap">
+    <div class="MainPage">
+    	<div class="dingzhi-top">
+			 	<!-- <h3>立即定制</h3> -->
+		</div>
+		
+		<div class="dingzhi-but-wrap">
+			<a href="{:U('Index/customize')}" target="_blank" class="button button-pill button-rounded  button-primary">个人定制</a>
+			<a href="{:U('Index/firm')}" target="_blank" class="button button-pill button-rounded  button-primary">企业定制</a>
+		</div>  
+		
+    </div>
+</div>
+<!--私人定制 end -->
+<!--bar1 start here-->
+<div class="HomeContent">
+	<div class="MainPage">
+		<div class="ContentHead">
+		 <div class="pack-top">
+			 	<h3>线路精选</h3>
+		  </div>
+		  </div>
+			<div class="ContentGroup">
+			  
+
+			  	<foreach name="best" item="v">
+			 	<div class="pack-content package-grid">
+				
+					<a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank"><empty name="v.thumb"><img src="__PUBLIC__/Common/img/preview.jpg"><else/><img src="__PUBLIC__/Uploads/small/{$v.thumb}"></empty></a>
+					<h4><a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank">{$v.name}</a></h4>
+					<div class="price">￥{$v.price}起</div>
+				</div>
+				</foreach>
+			<div class="clearfix"> </div>
+			</div>
+		</div>
+	
+</div>
+<!--bar1 end here--> 
+
+
+<!-- bar2 start -->
+<div class="ContentGrey">
+<div class="MainPage">
+<div class="ContentHead">
+	<div class="pack-top">
+		<h3>旅行灵感</h3>
+	</div>
+
+</div>
+<div class="ContentGroup">
+	<foreach name="best2" item="v">
+	    <div class="Content">
+	    <a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank">
+          <img class="lazy_img" src="__PUBLIC__/Uploads/big/{$v.thumb}" style="display: inline;">
+          <span class="SeasonMain">{$v.name}</span>
+	<!-- <span class="SeasonWord">（4晚5天）</span> -->
+	    </a>
+	    </div>
+    </foreach>
+    <div style="clear:both;"></div><!-- 撑开元素 -->
+</div>
+</div>
+</div>
+<!-- bar2 end -->
+<!-- bar3 start -->
+<div class="HomeContent">
+<div class="MainPage">
+<div class="ContentHead">
+	<div class="pack-top">
+		<h3>高端旅游</h3>
+	</div>
+
+</div>
+<div class="ContentGroup">
+	<foreach name="best3" item="v">
+	    <div class="Content">
+	    <a href="{:U('Index/product',array('id'=>$v['id']))}" target="_blank">
+          <img class="lazy_img" src="__PUBLIC__/Uploads/big/{$v.thumb}" style="display: inline;">
+          <span class="SeasonMain">{$v.name}</span>
+	<!-- <span class="SeasonWord">（4晚5天）</span> -->
+	    </a>
+	    </div>
+    </foreach>
+    <div style="clear:both;"></div><!-- 撑开元素 -->
+</div>
+</div>
+</div>
+<!-- bar3 end -->

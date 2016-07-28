@@ -1,0 +1,284 @@
+<link href="__PUBLIC__/Home/css/dingzhi.css" rel="stylesheet" type="text/css" media="all"/>
+<div class="login_bg">
+    	<!-- 添加 -->
+    <div class="center_wrap pt100" style="overflow:hidden;">
+    <!--个人定制-->
+       <div class="message form_dingzhi" style="display:block;">
+          <h3 class="mb15">企业定制</h3>
+          <div class="message_pr1 clearfix where">
+             <h4>想去哪儿？</h4>
+          	 <span class="continent">亚洲</span><span class="continent">欧洲</span><span class="continent">中东</span><span class="continent">非洲</span><span class="continent">南极/北极</span><span class="continent">大洋洲</span><span class="continent">中北美洲</span><span class="continent">加勒比</span><span class="continent">南美洲</span><span class="continent">海岛</span>
+          </div>
+          <div class="message_pr1 clearfix relation">
+             <h4>出游类型？</h4>
+             <span class="relation1">奖励旅游</span><span class="relation2">商务会议</span><span class="relation3">考察项目<i></i></span>
+          </div>
+          <div class="message_pr1 clearfix budget_zong">
+             <h4>单人预算？</h4>
+             <span class="budget" budget="0,5000">5000以内</span><span class="budget" budget="5000,10000">5000-1万</span><span class="budget" budget="10000,20000">1-2万<i></i></span>
+          </div>
+          <div class="message_pr2 mb20">
+            出行时间：
+            <input name="day" type="text">
+          </div>
+          <div class="message_pr3 mb15">
+            出行天数：
+            <input name="days_span" onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " onkeyup="this.value=this.value.replace(/[^\d]/g,'')" type="text">
+            出行人数：
+            <input name="people" onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " onkeyup="this.value=this.value.replace(/[^\d]/g,'')" type="text">
+          </div>
+           <div class="ipt_ts" style=" display: none;color:red">填写错误，提交失败</div>
+          <div class="message_btn ding_zhi_btn"><a href="javascript:void(0);">定制</a></div>
+       </div>
+       
+      <!--联系方式-->  
+      <div class="contact mt40 form_tijiao" >
+        <h3 class="mb20 mt30">请留下您的联系方式</h3>
+        <div class="ipt_contact mb20">
+          <input name="username" placeholder="怎么称呼您？" type="text">
+        </div>
+          <div class="ipt_call mb20">
+              <input name="phone" onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " onkeyup="this.value=this.value.replace(/[^\d]/g,'')" placeholder="联系电话" type="text">
+          </div>
+          <div class="ipt_contact mb20">
+          <input name="email" placeholder="邮箱" type="text">
+          </div>
+          <div class="ipt_yanzheng mb20">
+              <input name="verify" placeholder="图片验证码" autocomplete="OFF" class="w100" id="verify" type="text">
+              <img src="{:U('Index/getVerify')}" alt="验证码" title="看不清？点击切换"  id="verify_img" height="38" width="102"/>
+              <span>看不清？<a href="javascript:void(0);" class="_jsrefucaptcha" id="verify_change">换一张</a></span>
+          </div>
+        
+    	 <div class="ipt_contact mb20">
+          <input name="companyname" class="company" placeholder="公司名称，选填" type="text">
+         </div>
+        <div class="area_contact">
+          <textarea name="need" class="need" placeholder="您如果还有其它需求请填写在这里，选填"></textarea>
+        </div>
+          
+      </div> 
+      </div> 
+     
+    <script type="text/javascript">
+        
+	    //验证码点击刷新
+	    $(function(){
+	    	var img = $("#verify_img");
+	    	var src = img.attr("src")+"?";
+	    	img.click(function(){
+	    		img.attr("src",src+Math.random());
+	    	});
+	    });
+	    //点击“换一张”更新验证码
+	   $(function(){
+	    	var link = $("#verify_change");
+	    	var src = $("#verify_img").attr("src")+"?";
+	    	link.click(function(){
+	    		$("#verify_img").attr("src",src+Math.random());
+	    	});
+	    });
+        
+        $(function(){
+            where = '';
+            $(".continent").click(function(){
+                var dian = $(this).attr("class");
+                if(dian == 'continent'){
+                    $(".where > .continent1").attr("class","continent");
+                    $(this).attr("class","continent1 message_this");
+                    where = $(this).text();
+                }else{
+                    $(this).attr("class","continent");
+                    where = '';
+    
+                }
+            });
+    
+            var v = 1;
+            relation = '';
+            relation1 = '';
+            relation2 = '';
+            relation3 = '';
+           
+            for(v;v<=3;v++){
+                $(".relation"+v).click(function(){
+                    var re_class = $(this).attr("class");
+                     if(re_class=="relation1 message_this"){
+                         $(this).attr("class","relation1");
+                         relation1 = '';
+                         relation = '';
+                     }
+                     if( re_class=="relation1"){
+                         $(this).attr("class","relation1 message_this");
+                         relation1 = $(".relation1").text()+",";
+                     }
+                    if(re_class=="relation2 message_this"){
+                        $(this).attr("class","relation2");
+                        relation2 = '';
+                    }
+                    if( re_class=="relation2"){
+                        $(this).attr("class","relation2 message_this");
+                        relation2 = $(".relation2").text()+",";
+                    }
+                    if(re_class=="relation3 message_this"){
+                        $(this).attr("class","relation3");
+                        relation3 = '';
+                    }
+                    if( re_class=="relation3"){
+                        $(this).attr("class","relation3 message_this");
+                        relation3 = $(".relation3").text()+",";
+                    }
+                    
+                    relation = relation1+relation2+relation3;
+                });
+            }
+            budget = '';
+            $(".budget").click(function(){
+                var dian = $(this).attr("class");
+                if(dian == 'budget'){
+                    $(".budget_zong > .budget1").attr("class","budget");
+                    $(this).attr("class","budget1 message_this");
+                    budget = $(this).attr("budget");
+                }else{
+                    $(this).attr("class","budget");
+                    budget = '';
+                }
+            });
+    
+            $("input[name='username']").keyup(function(){
+                var user = $(this).val();
+                var username = user.length;
+                if(username>50)
+                {
+                    var num = user.substr(0,50);
+                    $(this).val(num);
+                }
+            });
+            $("input[name='need']").keyup(function(){
+                var need = $(this).val();
+                var dayLength = need.length;
+                if(dayLength>200)
+                {
+                    var num = need.substr(0,200);
+                    $(this).val(num);
+                }
+            });
+    
+            $("input[name='day']").keyup(function(){
+                var days_span = $(this).val();
+                var dLength = days_span.length;
+                if(dLength>50)
+                {
+                    var num = days_span.substr(0,50);
+                    $(this).val(num);
+                }
+            });
+    
+            $("input[name='days_span']").keyup(function(){
+                var days_span = $(this).val();
+                var dLength = days_span.length;
+                if(dLength>3)
+                {
+                    var num = days_span.substr(0,3);
+                    $(this).val(num);
+                }
+            });
+            $("input[name='people']").keyup(function(){
+                var people = $(this).val();
+                var pLength = people.length;
+                if(pLength>3)
+                {
+                    var num = people.substr(0,3);
+                    $(this).val(num);
+                }
+            });
+
+//        	取消提示
+            $(".valifytext").blur(function(){
+                var val = $(this).val();
+                if(val){
+                    $(".ipt_ts").hide().html("");
+                }
+            });
+            
+            $(".ding_zhi_btn").click(function() {
+                var day = $("input[name='day']").val();
+                day_null = day.replace(/(^\s*)|(\s*$)/g, "");
+    
+                var days_span = $("input[name='days_span']").val();
+                days_span_null = days_span.replace(/(^\s*)|(\s*$)/g, "");
+    
+                var people = $("input[name='people']").val();
+                people_null = people.replace(/(^\s*)|(\s*$)/g, "");
+                
+                var username = $("input[name='username']").val();
+                var phone = $("input[name='phone']").val();
+                username_null = username.replace(/(^\s*)|(\s*$)/g,"");
+                phone_null = phone.replace(/(^\s*)|(\s*$)/g,"");
+                //var phone_error="true";
+                phone_error = phone.replace(/(^1[0-9]{10})|^((\+86)|(86))?(13)\d{9}$/g,"true");
+                var email = $("input[name='email']").val();
+                
+                if (!where) {
+                    $(".ipt_ts").show().html("请选择您要去的地方");
+                }else if(!relation){
+                    $(".ipt_ts").show().html("请您选择出游类型");
+                }else if(!budget){
+                    $(".ipt_ts").show().html("请您选择单人预算");
+                }else if(!day_null){
+                    $(".ipt_ts").show().html("请填写出行时间");
+                }else if (!days_span_null) {
+                    $(".ipt_ts").show().html("请您填写出行天数");
+                }else if(!people_null){
+                    $(".ipt_ts").show().html("请填写出行人数");
+                }else if(!username_null || username_null=='怎么称呼您？'){
+                    $(".ipt_ts").show().html("请填写您的称呼");
+                }else if(!phone_null || phone_null == "联系电话"){
+                    $(".ipt_ts").show().html("请留下您的联系电话");
+                }else if(phone_error != "true"){
+                    $(".ipt_ts").show().html("请填写正确的手机号");
+                }else{
+                    $(".ipt_ts").hide().html("");
+                    var need = $(".need").val();
+                    var company = $(".company").val();
+                    var type = 1;
+                    $.ajax({
+                    	url:"{:U('Index/checkVerify')}",
+                        type:'POST',
+                        data:{code:$.trim($("input[name=verify]").val())},
+                        dataType:'json',
+                        success:function(result) {
+                        	console.log(result);
+                        	$("#refucaptcha").click();
+                            if(result.status == 1) {
+                                 //验证码正确
+                               alert("信息发送成功!我们将尽快和您取得联系");
+                                $.ajax({
+                                	url:"{:U('Index/firm')}",
+            	                    type: "POST",
+                                    data:{email:email,company:company,rests:need,type:type,where:where,relation:relation,budget:budget,departtime:day,departday:days_span,departpeople:people,username:username,phone:phone},
+                                    success:function(result){
+                                        console.log(result);
+                                    	
+                                    	if(result.res == 1){
+                                        alert("信息发送成功!我们将尽快和您取得联系");
+                                    	}
+                                    }
+                                });
+                            }else{
+                                $("#refucaptcha").click();
+                                $(".ipt_ts").show().html('验证码错误！');
+                                return false;
+                            }  
+                        }
+                    });//endof ajax
+                 }//endof else
+                
+            });
+            
+        });
+    
+    </script>
+	
+</div>
+
+

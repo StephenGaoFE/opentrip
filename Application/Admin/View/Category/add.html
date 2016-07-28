@@ -1,0 +1,24 @@
+<div class="title">分类添加</div>
+<div class="top-button">
+	相关操作：<a href="{:U('Category/index')}" class="light">分类列表</a>
+</div>
+<present name="success"><div class="mssage">添加成功。</div></present>
+<div class="list auto">
+	<form method="post">
+	<table class="t2 t3">
+		<tr><th>上级分类：</th><td>
+			<select name="pid" id="category">
+				<option value="0">顶级分类</option>
+				<foreach name="category" item="v">
+					<option value="{$v.id}">{:str_repeat('— ',$v['level'])}{$v.name}</option>
+				</foreach>
+			</select>
+		</td></tr>
+		<tr><th>分类名称：</th><td><input type="text" name="name"></td></tr>
+	</table>
+	<div class="btn1">
+		<button type="submit"  class="btn btn-primary" ><i class="icon-save"></i> 添加分类</button>
+	</div>
+	</form>
+</div>
+<present name="pid"><script> $("#category").val({$pid}); </script></present>

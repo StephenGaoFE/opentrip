@@ -1,0 +1,13 @@
+<div class="usercenter">
+<include file="User/_menu" />
+	<div class="content">
+		<div class="title">个人信息</div>
+		<table class="addr">
+			<tr><th width="95">收件人：</th><td>{$addr.consignee}</td></tr>
+			<tr><th>详细地址：</th><td>{$addr.address}</td></tr>
+			<tr><th>手机：</th><td>{$addr.phone}</td></tr>
+			<tr><th>邮箱：</th><td>{$addr.email}</td></tr>
+		</table>
+		<a href="{:U('User/addrEdit')}" class="addr-a">修改</a>
+	</div>
+</div>

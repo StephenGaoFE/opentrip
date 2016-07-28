@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理系统</title>
+	
+	
+	
+
+	
+	<!-- bootstrap fontawesome -->
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/bootstrap.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/Common/css/font-awesome.min.css"/>
+	<!--JQuery  -->
+	<script src="__PUBLIC__/Common/js/jquery.min.js"></script>
+	<!--date picker  -->
+	<link rel="stylesheet" href="__PUBLIC__/Common/css/bootstrap-datetimepicker.min.css"/>
+	<script src="__PUBLIC__/Common/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="__PUBLIC__/Common/js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<!--custom css  -->
+	<link rel="stylesheet" href="__PUBLIC__/Admin/css/style.css"/>
+</head>
+<body>
+<div class="top">
+	<h1 class="left">opentrip <span>后台管理系统</span></h1>
+	<ul class="right">
+		<li>欢迎您：{$admin_name}</li>
+		<li>管理员级别：{$admin_priv}</li>
+		<li><a href="__APP__/" target="_blank">前台首页</a></li>
+		<li><a href="{:U('Login/logout')}">退出登录</a></li>
+	</ul>
+</div>
+<div class="main">
+	<div class="menu left">
+		<div class="box">
+			<div class="head"><i></i><div>管理菜单</div></div>
+			<ul><li><a href="{:U('Index/index')}">后台首页</a></li>
+				<li><a href="{:U('Product/add')}" id="Product_add">产品添加</a></li>
+				<li><a href="{:U('Product/index')}" id="Product_index">产品列表</a></li>
+				<eq name="priv" value="0">
+					<li><a href="{:U('Category/add')}" id="Category_add">分类添加</a></li>
+					<li><a href="{:U('Category/index')}" id="Category_index">分类列表</a></li>
+				</eq>
+				<li><a href="{:U('Recycle/index')}" id="Recycle_index">回收站</a></li>
+				<eq name="priv" value="0">
+					<li><a href="{:U('User/index')}" id="User_index">会员列表</a></li>
+				</eq>
+				<li><a href="{:U('Admin/index')}" id="Admin_index">管理员</a></li>
+				
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="item">{__CONTENT__}</div>
+	</div>
+</div>
+<script>
+	$("#{$Think.CONTROLLER_NAME}_{$Think.ACTION_NAME}").addClass("curr");
+</script>
+</body>
+</html>

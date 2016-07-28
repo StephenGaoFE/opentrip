@@ -1,0 +1,35 @@
+<div class="usercenter">
+<include file="User/_menu" />
+	<div class="content">
+		<div class="title">我的订单</div>
+		<empty name="order">
+			<div class="showinfo"><p>您目前没有订单。</p></div>
+		<else/>
+			<foreach name="order" item="v">
+				<table class="order-top">
+					<tr><th>订单号码：<span>opentrip{$v.id}</span>　下单时间：<span>{$v.add_time}</span></td>
+					<td width="300" class="act">订单总价：<strong>￥{$v.price}</strong>　<a href="#">立即支付</a>　<a href="#" data-id="{$v.id}" class="cancel">取消订单</a></td></tr>
+				</table>
+				<table class="order">
+					<foreach name="v.product" item="vv">
+					
+						<tr><td><a href="#" target="_blank">{$vv.name}</a></td>
+						<td class="center" width="100">{$vv.num}件</td><td class="center" width="100"><span>￥{$vv.price}</span></td></tr>
+					</foreach>
+					<tr><td colspan="3">用户名：{$v.address.consignee}，联系电话：{$v.address.phone}，邮箱：{$v.address.email}</td></tr>
+				</table>
+			</foreach>
+		</empty>
+	</div>
+	<form method="post" id="form">
+		<input type="hidden" id="target" name="id">
+	</form>
+</div>
+<script>
+$(".cancel").click(function(){
+	if(confirm('您确定要取消订单？')){
+		$("#target").val($(this).attr("data-id"));
+		$("#form").attr("action","{:U('Order/cancel')}").submit();
+	}
+});
+</script>

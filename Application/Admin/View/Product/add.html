@@ -1,0 +1,209 @@
+
+	
+<div class="title">产品添加</div>
+<div class="top-button">
+	选择产品分类：<select id="category">
+		<option value="0">未分类</option>
+		<foreach name="category" item="v">
+			<option value="{$v.id}" <eq name="v.id" value="$cid">selected</eq>>{:str_repeat('— ',$v['level'])}{$v.name}</option>
+		</foreach>
+	</select>
+	(请在添加产品时，选择一个分类)<br>
+	<!-- a href="{:U('Product/index',array('cid'=>$cid))}" class="btn btn-default" ><i class="icon-list"></i> 产品列表</a> -->
+	<!-- <a href="{:U('Category/add')}" class="btn btn-primary"><i class="icon-plus"></i> 添加分类</a> -->
+	
+</div>
+<present name="success"><div class="mssage">添加成功。</div></present>
+<div class="list auto">
+	<form method="post" enctype="multipart/form-data">
+	<table class="t2 t4">
+		<tr><th>产品名称：</th><td><input type="text" name="name" class="big">（必填）</td></tr>
+		<tr><th>产品编号：</th><td><input type="text" name="sn" ></td></tr>
+		<tr><th>所属大州：</th><td>
+		<select name="continent" id="continent">
+			<option></option> 
+			<foreach name="continent" item="v">
+				<option value={$v}>{$v}</option>
+			</foreach>
+		</select>
+		（必填）</td></tr>
+		<tr><th>国家或地区：</th><td><input type="text" name="country" class="big">（必填）</td></tr>
+		<tr><th>行程天数：</th><td>
+		<select name="days">
+			<option></option> 
+			<foreach name="days" item="v">
+				<option value={$v}>{$v}</option>
+			</foreach>
+		</select>（线路/邮轮必填）</td></tr>
+		
+		<if condition="$cid eq 2 ">
+		<!--线路必填 start -->
+			<tr><th></th><td><b>以下为线路必填：</b></td></tr>
+			<tr class="bg-grey"><th>所在城市：</th><td><input type="text" name="city" class="big"></td></tr>
+			
+			<tr class="bg-grey"><th>产品主题：</th><td>
+			<select name="detail_property">
+				<option></option> 
+				<foreach name="detail_property" item="v">
+					<option value={$v}>{$v}</option>
+				</foreach>
+			</select></td></tr>
+			<!--线路必填 end -->
+		</if>
+		
+		<if condition="$cid eq 1 ">
+		<!--签证必填 start -->
+		<tr><th></th><td><b>以下为签证必填：</b></td></tr>
+		<tr class="bg-grey"><th>护照签发地：</th><td><input type="text" name="place_of_issue" class="big">（签证必填，此处可从下列地区中进行多选，填写时请用逗号隔开
+）</td></tr>
+		<tr class="bg-grey"><th></th><td>如：○安徽 ○北京 ○福建 ○甘肃 ○广东 ○广西 ○贵州
+            ○海南 ○河北 ○河南 ○黑龙江 ○湖北 ○湖南 ○吉林
+            ○江苏 ○江西 ○辽宁 ○内蒙古 ○宁夏 ○青海 ○山东
+            ○山西 ○陕西 ○上海 ○四川 ○天津 ○西藏 ○新疆
+            ○云南 ○浙江 ○重庆 ○其他国家或地区
+		<td></tr>
+		<tr class="bg-grey"><th>签证代办类型：</th><td>
+		<select name="visa_type" id="visa_type">
+			<option></option> 
+			<foreach name="visa_type" item="v">
+					<option value={$v}>{$v}</option>
+			</foreach>
+		</select>
+		（签证必填）</td></tr>
+		<tr class="bg-grey"><th>送签地：</th><td><input type="text" name="sent_visa_place" class="big">（签证必填，自定义）</td></tr>
+		<tr class="bg-grey"><th></th><td>如：上海、北京、广州、武汉、成都、沈阳、香港等城市名称<td></tr>
+		<!--签证必填 end  -->
+		</if>
+		
+		<if condition="$cid eq 3 ">
+		<!--邮轮必填 start -->
+		<tr><th></th><td><b>以下为邮轮必填：</b></td></tr>
+		<tr class="bg-grey"><th>出发城市：</th><td>
+		<select name="ship_depart_city">
+			<option></option> 
+			<foreach name="ship_depart_city" item="v">
+					<option value={$v}>{$v}</option>
+			</foreach>
+		</select></td></tr>
+		<tr class="bg-grey"><th>邮轮航线：</th><td>
+		<select name="ship_route">
+			<option></option> 
+			<foreach name="ship_route" item="v">
+					<option value={$v}>{$v}</option>
+			</foreach>
+		</select></td></tr>
+		<tr class="bg-grey"><th>邮轮公司：</th><td>
+		<select name="ship_company">
+			<option></option> 
+			<foreach name="ship_company" item="v">
+					<option value={$v}>{$v}</option>
+			</foreach>
+		</select></td></tr>
+		<tr class="bg-grey"><th>船名：</th><td>
+		<select name="ship_name">
+			<option></option> 
+			<foreach name="ship_name" item="v">
+					<option value={$v}>{$v}</option>
+			</foreach>
+		</select></td></tr>
+		<tr class="bg-grey"><th>出游日期：</th><td>
+		<select name="ship_depart_time">
+			<option></option> 
+			<foreach name="ship_depart_time" item="v">
+					<option value={$v}>{$v}</option>
+			</foreach>
+		</select></td></tr>
+		<!--邮轮必填 end -->
+		</if>
+		
+		<tr><th>出发城市：</th><td><input type="text" name="start" class="big"></td></tr>
+		<tr><th>途径城市：</th><td><input type="text" name="path" class="big"></td></tr>
+		<tr><th>目的地城市：</th><td><input type="text" name="end" class="big"></td></tr>
+		
+		<tr><th>产品亮点：</th><td><input type="text" name="highlight1" class="big"></td></tr>
+		<tr><th></th><td><input type="text" name="highlight2" class="big"></td></tr>
+		<tr><th></th><td><input type="text" name="highlight3" class="big"></td></tr>
+		<tr><th></th><td>产品亮点请填写：例如【欧洲最美小镇】、【音乐之声仙境】、【彩色波希米亚风】等，每行不超过20个字<td></tr>
+		<tr><th>出游日期：</th><td><input size="16" type="text" value=""  class="form_datetime" name="start_time"></td></tr>
+		<tr><th>服务语言：</th><td><input type="text" name="language" ></td></tr>
+		<tr><th>出游人群：</th><td><input type="text" name="people" ></td></tr>
+		
+		<tr><th>供应商报价：</th><td><input type="text" name="price" class="small"> 元 （必填）</td></tr>
+		<tr><th></th><td>最终产品价格 = 供应商报价 × (1 + 产品信息费% - 产品优惠额%)<td></tr>
+		<tr><th>门市价：</th><td><input type="text" name="market_price" class="small"> 元</td></tr>
+		<tr><th></th><td>提示：填写价格请严格遵守法律规定、遵守市场规律，确保可以提供该价格的合法依据或可供比较的出处，不得虚构原价。<td></tr>
+		<tr><th>儿童价：</th><td><input type="text" name="child_price" class="small"> 元</td></tr>
+		<tr><th>套餐一：</th><td>名称：<input type="text" name="plan1_name" class="small"> 价格：<input type="text" name="plan1_price" class="small"> 元（供应商报价）</td></tr>
+		<tr><th>套餐二：</th><td>名称：<input type="text" name="plan2_name" class="small"> 价格：<input type="text" name="plan2_price" class="small"> 元</td></tr>
+		<tr><th>套餐三：</th><td>名称：<input type="text" name="plan3_name" class="small"> 价格：<input type="text" name="plan3_price" class="small"> 元</td></tr>
+		<tr><th>套餐四：</th><td>名称：<input type="text" name="plan4_name" class="small"> 价格：<input type="text" name="plan4_price" class="small"> 元</td></tr>
+		<tr><th>套餐五：</th><td>名称：<input type="text" name="plan5_name" class="small"> 价格：<input type="text" name="plan5_price" class="small"> 元</td></tr>
+		<tr><th>套餐六：</th><td>名称：<input type="text" name="plan6_name" class="small"> 价格：<input type="text" name="plan6_price" class="small"> 元</td></tr>
+		<tr><th>产品信息费：</th><td><input type="text" name="info_fee" class="small"> %</td></tr>
+		<tr><th>产品优惠额：</th><td><input type="text" name="discount" class="small"> %</td></tr>
+		<tr><th>定金：</th><td><input type="text" name="deposit" class="small"> 元</td></tr>
+		<tr><th>产品库存：</th><td><input type="text" name="stock" class="small">（必填）</td></tr>
+		<tr><th>促销活动：</th><td><input type="text" name="promotion" ></td></tr>
+		
+		<tr><th>二次确认：</th><td><select name="confirm"><option value="yes" selected>是</option><option value="no">否</option></select></td></tr>
+		<tr><th>是否上架：</th><td><select name="on_sale"><option value="yes" selected>是</option><option value="no">否</option></select></td></tr>
+		<eq name="priv" value="0">
+			<tr><th>首页推荐：</th><td><select name="recommend"><option value="yes">是</option><option value="no" selected>否</option></select></td></tr>
+		</eq>
+		<tr><th>缩略图：</th><td><input type="file" name="thumb" class="btn btn-default"/>分辨率400*400以上，大小2M以内</td></tr>
+		<tr><th>焦点图1：</th><td><input type="file" name="pic1" class="btn btn-default"/>分辨率690*400以上，大小2M以内，请上传5张图片</td></tr>
+		<tr><th>焦点图2：</th><td><input type="file" name="pic2" class="btn btn-default"/></td></tr>
+		<tr><th>焦点图3：</th><td><input type="file" name="pic3" class="btn btn-default"/></td></tr>
+		<tr><th>焦点图4：</th><td><input type="file" name="pic4" class="btn btn-default"/></td></tr>
+		<tr><th>焦点图5：</th><td><input type="file" name="pic5" class="btn btn-default"/></td></tr>
+	</table>
+	<div class="editor">
+	<p>产品详情：</p>
+		<include file="Product/_editor" />
+		<script type="text/plain" id="myEditor" name="desc"><p>请在此处输入产品详情。</p></script>
+	</div>
+	<div class="editor">
+	<p>行程参考：</p>
+		<script type="text/plain" id="myEditor2" name="travel_ref"><p>无</p></script>
+	</div>
+	<div class="editor">
+	<p>费用说明：</p>
+		<script type="text/plain" id="myEditor3" name="cost_desc"><p>无</p></script>
+	</div>
+	<div class="editor">
+	<p>预定须知：</p>
+		<script type="text/plain" id="myEditor4" name="reserve_notice"><p>无</p></script>
+	</div>
+	<div class="editor">
+	<p>改退规定：</p>
+		<script type="text/plain" id="myEditor5" name="restrict"><p>本产品预订后，经二次确认后取消或修改订单将不予退款。</p></script>
+	</div>
+	<div class="editor">
+	<p>问题咨询：</p>
+		<script type="text/plain" id="myEditor6" name="info"><p>欢迎发送邮件至opentrip@qq.com垂询详情或定制欧洲当地其他线路行程，我们的客服人员将尽快与您联系。</p></script>
+	</div>
+	<div class="btn1">
+		<button type="submit" class="btn btn-primary" ><i class="icon-save"></i> 添加产品</button>
+	</div>
+	</form>
+</div>
+<script type="text/javascript">
+	//下拉菜单跳转
+	$("#category").change(function(){
+		var url = "{:U('Product/add',array('cid'=>'_ID_'))}";
+		location.href = url.replace("_ID_",$(this).val());
+	});
+	//time-picker
+	$(".form_datetime").datetimepicker({
+		
+		format: 'yyyy-mm-dd',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+	
+	});
+</script>
