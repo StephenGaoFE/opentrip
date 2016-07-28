@@ -29,6 +29,7 @@ cp config.bak.php config.php
 vi config.php # set up  mysql connection info
 ```
 首先，MySQL新建一个schema，导入数据库 opentrip/sql/opentrip.sql
+然后，把config.bak.php复制为config.php
 在opentrip/Application/Common/Conf/config.php 中配置mysql连接密码,以及schema名称
 如想使用email发送功能，请在config.php中配置smtp服务器，以及自己的邮箱账户
 后台的默认登录用户名密码是admin 123456
